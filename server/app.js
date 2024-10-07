@@ -31,6 +31,7 @@ app.use(cookieParser());
 // Devs Team - Start working on the routes here:
 // ...
 app.get("/docs", (req, res) => {
+  console.log(res)
   res.sendFile(__dirname + "/views/docs.html");
 });
 
