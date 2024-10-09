@@ -6,7 +6,7 @@ const cohortSchema = new Schema({
   inProgress: Boolean,
   cohortSlug: String,
   cohortName: String,
-  program: {type: String, enum:["Data Analytics", "UX/UI", "Web Dev", "Cybersecurity"]},
+  program: String,
   format: String,
   campus: String,
   starDate: String,
