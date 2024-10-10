@@ -6,12 +6,11 @@ router.get("/",(req,res,next)=>{
 })
 
 
-const studentRouter = require ("./student.routes")
-router.use("/students", studentRouter)
-const cohortRouter = require ("./cohort.routes")
-router.use("/cohorts", cohortRouter)
+const studentRouter = require ("./student.routes.js")
+router.use("/api/", studentRouter)
+const cohortRouter = require ("./cohort.routes.js")
+router.use("/api/", cohortRouter)
 
 module.exports = router
 
-//CRUD 
 

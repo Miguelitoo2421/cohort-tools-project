@@ -5,7 +5,7 @@ const Cohort = require("../models/Cohort.model.js");
 
 
 //crear cohort
-router.post("/cohorts", async (req, res) => {
+router.post("/cohorts", async (req, res, next) => {
   try {
     const response = await Cohort.create({
       ...req.body,
@@ -17,7 +17,7 @@ router.post("/cohorts", async (req, res) => {
 });
 
 //mostrar todos los cohorts
-router.get("/cohorts", async (req, res) => {
+router.get("/cohorts", async (req, res, next) => {
   try {
     const response = await Cohort.find();
     res.json(response);
@@ -27,7 +27,7 @@ router.get("/cohorts", async (req, res) => {
 });
 
 //mostrar detalles de cohort concreto
-router.get("/cohorts/:cohortId", async (req, res) => {
+router.get("/cohorts/:cohortId", async (req, res, next) => {
   try {
     const response = await Cohort.findById(req.params.cohortId);
     res.json(response);
@@ -37,7 +37,7 @@ router.get("/cohorts/:cohortId", async (req, res) => {
 });
 
 //editar cohort
-router.put("/cohorts/:cohortId", async (req, res) => {
+router.put("/cohorts/:cohortId", async (req, res, next) => {
   try {
     const response = await Cohort.findByIdAndUpdate(
       req.params.cohortId,
@@ -53,7 +53,7 @@ router.put("/cohorts/:cohortId", async (req, res) => {
 });
 
 //eliminar cohort
-router.delete("/cohorts/:cohortId", async (req, res) => {
+router.delete("/cohorts/:cohortId", async (req, res, next) => {
   try {
     await Cohort.findByIdAndDelete(req.params.cohortId);
     res.status(201).json({ mesage: "Cohort eliminado" });
