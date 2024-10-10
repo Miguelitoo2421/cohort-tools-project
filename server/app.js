@@ -43,19 +43,6 @@ app.get("/docs", (req, res) => {
   res.sendFile(__dirname + "/views/docs.html");
 });
 
-app.get("/api/cohorts", (req, res) => {
-  // res.json(cohorts);
-  Cohort.find({}).then((cohorts) => {
-    res.json(cohorts);
-  });
-});
-
-app.get("/api/students", (req, res) => {
-  // res.json(students);
-  Student.find({}).then((students) => {
-    res.json(students);
-  });
-});
 // Crear student
 app.post("/api/students", async (req, res) => {
   try {
