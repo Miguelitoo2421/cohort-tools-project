@@ -4,20 +4,10 @@ const Student = require("../models/Student.model.js");
 
 
 // Crear student
-router.post("/students", async (req, res) => {
+router.post("/students", async (req, res, next) => {
   try {
     const response = await Student.create({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      phone: req.body.phone,
-      linkedinUrl: req.body.linkedinUrl,
-      languages: req.body.languages,
-      program: req.body.program,
-      background: req.body.background,
-      image: req.body.image,
-      projects: req.body.projects,
-      cohort: req.body.cohort,
+    ...req.body
     });
     res.send(response);
 
@@ -28,7 +18,7 @@ router.post("/students", async (req, res) => {
 });
 
 // encontrar todos
-router.get("/students", async (req, res) => {
+router.get("/students", async (req, res, next) => {
   try {
     const response = await Student.find().populate("cohort");
 
@@ -39,7 +29,7 @@ router.get("/students", async (req, res) => {
 });
 
 //mostrar students por cohort
-router.get("/students/cohort/:cohortId", async (req, res) => {
+router.get("/students/cohort/:cohortId", async (req, res, next) => {
   try {
     const response = await Student.find({
       cohort: req.params.cohortId,
@@ -51,7 +41,7 @@ router.get("/students/cohort/:cohortId", async (req, res) => {
 });
 
 // Encontrar student especifico
-router.get("/students/:studentId", async (req, res) => {
+router.get("/students/:studentId", async (req, res, next) => {
   try {
     const response = await Student.findById(req.params.studentId).populate(
       "cohort"
@@ -63,7 +53,7 @@ router.get("/students/:studentId", async (req, res) => {
 });
 
 //actualizar info de student
-router.put("/students/:studentId", async (req, res) => {
+router.put("/students/:studentId", async (req, res, next) => {
   try {
     const response = await Student.findByIdAndUpdate(
       req.params.studentId,
@@ -89,7 +79,7 @@ router.put("/students/:studentId", async (req, res) => {
 });
 
 //borrar student
-router.delete("/students/:studentId", async (req, res) => {
+router.delete("/students/:studentId", async (req, res, next) => {
   try {
     const response = await Student.findByIdAndDelete(req.params.studentId);
     res.status(201).json(response);
