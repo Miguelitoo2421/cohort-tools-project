@@ -15,7 +15,7 @@ configs(app);
 // ...
 
 // INITIALIZE EXPRESS APP - https://expressjs.com/en/4x/api.html#express
-const Cohort = require("./models/Cohort.model.js");
+
 
 
 
@@ -35,10 +35,6 @@ app.get("/docs", (req, res) => {
 
 const indexRouter = require("./routes/index.routes.js")
 app.use("/api", indexRouter)
-
-
-
-
 
 
 const errorHandling = require("./error-handlers")
