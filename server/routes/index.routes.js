@@ -13,5 +13,4 @@ router.use("/api/", cohortRouter)
 
 module.exports = router
 
-//CRUD 
 
