@@ -4,7 +4,7 @@ const Student = require("../models/Student.model.js");
 
 
 // Crear student
-router.post("/students", async (req, res, next) => {
+router.post("/", async (req, res, next) => {
   try {
     const response = await Student.create({
     ...req.body
@@ -18,7 +18,7 @@ router.post("/students", async (req, res, next) => {
 });
 
 // encontrar todos
-router.get("/students", async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     const response = await Student.find().populate("cohort");
 
@@ -29,7 +29,7 @@ router.get("/students", async (req, res, next) => {
 });
 
 //mostrar students por cohort
-router.get("/students/cohort/:cohortId", async (req, res, next) => {
+router.get("/cohort/:cohortId", async (req, res, next) => {
   try {
     const response = await Student.find({
       cohort: req.params.cohortId,
@@ -41,7 +41,7 @@ router.get("/students/cohort/:cohortId", async (req, res, next) => {
 });
 
 // Encontrar student especifico
-router.get("/students/:studentId", async (req, res, next) => {
+router.get("/:studentId", async (req, res, next) => {
   try {
     const response = await Student.findById(req.params.studentId).populate(
       "cohort"
@@ -53,7 +53,7 @@ router.get("/students/:studentId", async (req, res, next) => {
 });
 
 //actualizar info de student
-router.put("/students/:studentId", async (req, res, next) => {
+router.put("/:studentId", async (req, res, next) => {
   try {
     const response = await Student.findByIdAndUpdate(
       req.params.studentId,
@@ -79,7 +79,7 @@ router.put("/students/:studentId", async (req, res, next) => {
 });
 
 //borrar student
-router.delete("/students/:studentId", async (req, res, next) => {
+router.delete("/:studentId", async (req, res, next) => {
   try {
     const response = await Student.findByIdAndDelete(req.params.studentId);
     res.status(201).json(response);
