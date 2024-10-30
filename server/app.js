@@ -34,7 +34,7 @@ app.get("/docs", (req, res) => {
 
 
 const indexRouter = require("./routes/index.routes.js")
-app.use("/", indexRouter)
+app.use("/api/", indexRouter)
 
 
 const errorHandling = require("./error-handlers")

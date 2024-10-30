@@ -2,10 +2,8 @@ const express = require("express");
 const router = express.Router();
 const Cohort = require("../models/Cohort.model.js");
 
-
-
 //crear cohort
-router.post("/cohorts", async (req, res, next) => {
+router.post("/", async (req, res, next) => {
   try {
     const response = await Cohort.create({
       ...req.body,
@@ -17,7 +15,7 @@ router.post("/cohorts", async (req, res, next) => {
 });
 
 //mostrar todos los cohorts
-router.get("/cohorts", async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     const response = await Cohort.find();
     res.json(response);
@@ -27,7 +25,7 @@ router.get("/cohorts", async (req, res, next) => {
 });
 
 //mostrar detalles de cohort concreto
-router.get("/cohorts/:cohortId", async (req, res, next) => {
+router.get("/:cohortId", async (req, res, next) => {
   try {
     const response = await Cohort.findById(req.params.cohortId);
     res.json(response);
@@ -37,7 +35,7 @@ router.get("/cohorts/:cohortId", async (req, res, next) => {
 });
 
 //editar cohort
-router.put("/cohorts/:cohortId", async (req, res, next) => {
+router.put("/:cohortId", async (req, res, next) => {
   try {
     const response = await Cohort.findByIdAndUpdate(
       req.params.cohortId,
@@ -53,7 +51,7 @@ router.put("/cohorts/:cohortId", async (req, res, next) => {
 });
 
 //eliminar cohort
-router.delete("/cohorts/:cohortId", async (req, res, next) => {
+router.delete("/:cohortId", async (req, res, next) => {
   try {
     await Cohort.findByIdAndDelete(req.params.cohortId);
     res.status(201).json({ mesage: "Cohort eliminado" });
@@ -61,7 +59,5 @@ router.delete("/cohorts/:cohortId", async (req, res, next) => {
     next(error);
   }
 });
-
-
 
 module.exports = router
